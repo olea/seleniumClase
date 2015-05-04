@@ -9,7 +9,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class CambioDeContraseADeUsuarioOlea {
+// public class CambioDeContraseADeUsuarioOlea {
+public class caso14 {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
