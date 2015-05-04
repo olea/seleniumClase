@@ -2,18 +2,14 @@ package com.example.tests;
 
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
-
 import org.junit.*;
-
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Caso1 {
+public class SignupDuplicado {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -22,21 +18,24 @@ public class Caso1 {
   @Before
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-    // driver = new HtmlUnitDriver();
-	  // turn off htmlunit warnings
-	  java.util.logging.Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(java.util.logging.Level.OFF);
-	  java.util.logging.Logger.getLogger("org.apache.http").setLevel(java.util.logging.Level.OFF);
-    
-    baseUrl = "http://www.ual.es/";
+    baseUrl = "http://ualhmis15.cloudapp.net/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
-  public void testCaso1() throws Exception {
-    driver.get(baseUrl + "");
-    driver.findElement(By.linkText("Órganos de Gobierno")).click();
-    driver.findElement(By.linkText("Vicerrectorado de Profesorado y Ordenación Académica")).click();
-    assertEquals("Edificio de Gobierno y Paraninfo", driver.findElement(By.cssSelector("strong")).getText());
+  public void testSignupDuplicado() throws Exception {
+    driver.get(baseUrl + "/");
+    driver.findElement(By.linkText("Sign up")).click();
+    driver.findElement(By.id("user_username")).clear();
+    driver.findElement(By.id("user_username")).sendKeys("user1");
+    driver.findElement(By.id("user_email")).clear();
+    driver.findElement(By.id("user_email")).sendKeys("carolo@genarin.net");
+    driver.findElement(By.id("user_password")).clear();
+    driver.findElement(By.id("user_password")).sendKeys("1234");
+    driver.findElement(By.id("user_password_confirmation")).clear();
+    driver.findElement(By.id("user_password_confirmation")).sendKeys("1234");
+    driver.findElement(By.name("commit")).click();
+    assertEquals("Hmislogin", driver.getTitle());
   }
 
   @After
