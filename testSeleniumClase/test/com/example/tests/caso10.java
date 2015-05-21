@@ -17,7 +17,7 @@ public class caso10 {
 
   @Before
   public void setUp() throws Exception {
-    driver = new FirefoxDriver();
+    driver = new HtmlUnitDriver();
     baseUrl = "http://ualhmis15.cloudapp.net/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
